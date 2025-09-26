@@ -45,13 +45,16 @@ int	enqueue(Queue *queue, void *data)
 void	*dequeue(Queue *queue)
 {
 	QueueItem	*item;
+	void		*data;
 
 	if (!queue->size)
 		return (NULL);
 	item = queue->head;
 	queue->head = queue->head->next;
 	queue->size--;
-	return (item);
+	data = item->data;
+	free(item);
+	return (data);
 }
 
 void	free_queue(Queue *queue)

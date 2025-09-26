@@ -56,8 +56,11 @@ SquareArray	*square_array_copy(SquareArray *square_array)
 		return (NULL);
 	i = 0;
 	while (i < square_array->len)
+	{
 		square_array_push(sa_copy, square_array->content[i].row, 
 			square_array->content[i].col);
+		i++;
+	}
 	return (sa_copy);
 }
 

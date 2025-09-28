@@ -9,7 +9,7 @@
  * If no square can be found returns a square with coordinates corresponding
  * to the size of the grid.
  */
-Square		find_square(Grid *grid, char square_content)
+Square			find_square(Grid *grid, char square_content)
 {
 	Square	square;
 
@@ -35,7 +35,7 @@ Square		find_square(Grid *grid, char square_content)
  * in the square array pointed by square_array.
  * If a square is found, returns 1, else returns 0.
  */
-int	has_square(SquareArray *square_array, int row, int col)
+int			has_square(SquareArray *square_array, int row, int col)
 {
 	unsigned int	i;
 
@@ -58,7 +58,7 @@ int	has_square(SquareArray *square_array, int row, int col)
  * the square array pointed by square_array.
  * Returns 1 if all the conditions are met, else returns 0.
  */
-int		check_square(Grid *grid, SquareArray *square_array, int row, int col)
+int			check_square(Grid *grid, SquareArray *square_array, int row, int col)
 {
 	return (row >= 0 && col >= 0 && row < grid->rows && col < grid->cols
 		&& (grid->content[row][col] == SPACE 
@@ -91,7 +91,7 @@ void		*cleanup(Queue *queue, SquareArray *square_array)
  * Stores the copy as a new path in the queue pointed by queue.
  * If no error occurred, returns 1, else returns 0.
  */
-int	add_new_path(Queue *queue, SquareArray *square_array, int row, int col)
+int			add_new_path(Queue *queue, SquareArray *square_array, int row, int col)
 {
 	SquareArray	*sa_copy;
 
@@ -144,7 +144,7 @@ SquareArray	*handle_next_path(Grid *grid, Queue *queue, Square end, int **v)
  * setting all its values to 0.
  * Returns the array if no error occurred, else returns a NULL pointer.
  */
-int 	**init_visited(Grid *grid)
+int 		**init_visited(Grid *grid)
 {
 	int	**visited;
 	int	i;
@@ -174,7 +174,7 @@ SquareArray	*resolve(Grid *grid)
 	Queue		*queue;
 	SquareArray	*sa;
 	Square		s;
-	int		**visited;
+	int			**visited;
 	
 	s = find_square(grid, START);
 	queue = init_queue();

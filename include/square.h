@@ -9,8 +9,8 @@ typedef struct square {
 } Square;
 
 typedef struct square_array {
-	Square		*content;
-	size_t		size;
+	Square			*content;
+	size_t			size;
 	unsigned int	len;
 } SquareArray;
 
@@ -28,7 +28,7 @@ SquareArray	*init_square_array(size_t size);
  * pointed by square_array.
  * Returns 1 if the Square was added properly, else returns 0.
  */
-int		square_array_push(SquareArray *square_array, int row, int col);
+int			square_array_push(SquareArray *square_array, int row, int col);
 
 /*
  * square_array_pop:

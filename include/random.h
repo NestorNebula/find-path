@@ -13,6 +13,6 @@ void	init_random(void);
  * random_number:
  * Returns a random number modulo mod.
  */
-int	random_number(int mod);
+int		random_number(int mod);
 
 #endif

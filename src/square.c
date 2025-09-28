@@ -19,7 +19,7 @@ SquareArray	*init_square_array(size_t size)
 	return (square_array);
 }
 
-int		square_array_push(SquareArray *square_array, int row, int col)
+int			square_array_push(SquareArray *square_array, int row, int col)
 {
 	Square	*resized_content;
 
@@ -48,7 +48,7 @@ Square		square_array_pop(SquareArray *square_array)
 
 SquareArray	*square_array_copy(SquareArray *square_array)
 {
-	SquareArray	*sa_copy;
+	SquareArray		*sa_copy;
 	unsigned int	i;
 
 	sa_copy = init_square_array(square_array->size);

@@ -23,7 +23,7 @@ Queue	*init_queue(void);
  * Adds the data pointed by data to the end of the queue pointed by queue.
  * Returns 1 if the data was added properly to the queue, else returns 0.
  */
-int	enqueue(Queue *queue, void *data);
+int		enqueue(Queue *queue, void *data);
 
 /*
  * dequeue:

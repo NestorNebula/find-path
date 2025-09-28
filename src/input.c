@@ -8,7 +8,7 @@
  * Reads a character from fd and appends it to the string pointed by input.
  * Returns 1 if a character was read, 0 otherwise.
  */
-int	read_char(int fd, char **input, unsigned int len, size_t *size)
+int		read_char(int fd, char **input, unsigned int len, size_t *size)
 {
 	char	*resized_input;
 
@@ -27,8 +27,8 @@ int	read_char(int fd, char **input, unsigned int len, size_t *size)
 
 char	*read_input(int fd)
 {
-	char		*input;
-	size_t		size;
+	char			*input;
+	size_t			size;
 	unsigned int	len;
 
 	size = 4;
@@ -56,8 +56,8 @@ char	*read_input(int fd)
 
 char	*read_str(int fd, char last_char)
 {
-	char		*str;
-	size_t		size;
+	char			*str;
+	size_t			size;
 	unsigned int	len;
 
 	size = 2;

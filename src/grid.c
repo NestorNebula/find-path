@@ -8,7 +8,7 @@
  * If it is, returns 1 and sets the values pointed by rows and cols to 
  * the number of rows and columns in the grid, else returns 0.
  */
-int	check_grid(const char *grid_str, int *rows, int *cols)
+int		check_grid(const char *grid_str, int *rows, int *cols)
 {
 	int	i;
 	int	start_end;
@@ -97,8 +97,8 @@ void	copy_grid(Grid *grid, const char *grid_str)
 Grid	*init_grid(const char *grid_str)
 {
 	Grid	*grid;
-	int	rows;
-	int	cols;
+	int		rows;
+	int		cols;
 
 	if (!check_grid(grid_str, &rows, &cols))
 		return (NULL);

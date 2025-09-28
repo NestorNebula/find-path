@@ -11,7 +11,7 @@
  * Depending on the number of arguments, sets the value pointed by fd.
  * Returns 1 if everything is valid else returns 0.
  */
-int	handle_arguments(int argc, char **argv, int *fd)
+int		handle_arguments(int argc, char **argv, int *fd)
 {
 	if (argc > 2)
 	{
@@ -40,7 +40,7 @@ int	handle_arguments(int argc, char **argv, int *fd)
  * If the input and the grid are valid, sets the pointer pointed by grid_ptr
  * to point towards the grid and returns 1. Else returns 0.
  */
-int	create_grid(Grid **grid_ptr, int fd)
+int		create_grid(Grid **grid_ptr, int fd)
 {
 	Grid	*grid;
 	char	*input;
@@ -70,7 +70,7 @@ int	create_grid(Grid **grid_ptr, int fd)
 void	set_solution(Grid *grid, SquareArray *sa)
 {
 	unsigned int	i;
-	Square		*s;
+	Square			*s;
 
 	i = 0;
 	while (i + 1 < sa->len)
@@ -88,11 +88,11 @@ void	set_solution(Grid *grid, SquareArray *sa)
 	}
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	Grid		*grid;
 	SquareArray	*sa;
-	int		fd;
+	int			fd;
 
 	if (!handle_arguments(argc, argv, &fd) || !create_grid(&grid, fd))
 		return (0);

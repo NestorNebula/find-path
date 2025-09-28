@@ -8,8 +8,8 @@
 
 typedef struct grid {
 	char	**content;
-	int	rows;
-	int	cols;
+	int		rows;
+	int		cols;
 } Grid;
 
 /*

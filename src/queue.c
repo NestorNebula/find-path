@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef struct queue_item {
-	void			*data;
+	void				*data;
 	struct queue_item	*next;
 } QueueItem;
 
@@ -19,7 +19,7 @@ Queue	*init_queue(void)
 	return (queue);
 }
 
-int	enqueue(Queue *queue, void *data)
+int		enqueue(Queue *queue, void *data)
 {
 	QueueItem	*item;
 

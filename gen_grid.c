@@ -11,7 +11,7 @@
  * to write into it and updates the value pointed by fd accordingly.
  * Returns 1 if no error occurred, else returns 0.
  */
-int	handle_arguments(int argc, char **argv, int *fd)
+int		handle_arguments(int argc, char **argv, int *fd)
 {
 	if (argc != 2)
 	{
@@ -35,7 +35,7 @@ int	handle_arguments(int argc, char **argv, int *fd)
  * Sets the value to def if the updated value wasn't between min and max.
  * Returns 1 if the value was set correctly, else returns 0.
  */
-int	set_param(int *param_ptr, int min, int max, int def)
+int		set_param(int *param_ptr, int min, int max, int def)
 {
 	char	*input;
 
@@ -54,7 +54,7 @@ int	set_param(int *param_ptr, int min, int max, int def)
  * updating the value pointed by each pointer.
  * Returns 1 if every value could be set, else returns 0.
  */
-int	get_params(int *rows, int *cols, int *obs_percentage)
+int		get_params(int *rows, int *cols, int *obs_percentage)
 {
 	print_s("Rows: ", stdout);
 	if (!set_param(rows, 1, 100, 10))
@@ -74,7 +74,7 @@ int	get_params(int *rows, int *cols, int *obs_percentage)
  * using the values of rows and cols as modulo.
  * Returns 1 if the values were correctly assigned, else returns 0.
  */
-int	set_start_end(Square *start, Square *end, int rows, int cols)
+int		set_start_end(Square *start, Square *end, int rows, int cols)
 {
 	if (rows <= 1 && cols <= 1)
 		return (0);
@@ -115,7 +115,7 @@ void	write_square(int fd, Square s, Square *start_end, int obs_percentage)
  * parameters.
  * Returns 1 if the grid was created properly, else returns 0.
  */
-int	write_grid(int fd, int rows, int cols, int obs_percentage)
+int		write_grid(int fd, int rows, int cols, int obs_percentage)
 {
 	Square	square;
 	Square	start_end[2];
@@ -139,7 +139,7 @@ int	write_grid(int fd, int rows, int cols, int obs_percentage)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int	fd;
 	int	rows;

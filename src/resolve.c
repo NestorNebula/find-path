@@ -1,5 +1,6 @@
 #include <resolve.h>
 #include <queue.h>
+#include <stdlib.h>
 
 /*
  * find_square:
@@ -110,7 +111,7 @@ int	add_new_path(Queue *queue, SquareArray *square_array, int row, int col)
  * pointed by queue and returns a NULL pointer, else returns a pointer to the
  * square array containing the path.
  */
-SquareArray	*handle_next_path(Grid *grid, Queue *queue, Square end)
+SquareArray	*handle_next_path(Grid *grid, Queue *queue, Square end, int **v)
 {
 	SquareArray	*sa;
 	Square		s;
@@ -122,41 +123,75 @@ SquareArray	*handle_next_path(Grid *grid, Queue *queue, Square end)
 		cleanup(queue, NULL);
 		return (sa);
 	}
-	if (check_square(grid, sa, s.row - 1, s.col) 
+	if (check_square(grid, sa, s.row - 1, s.col) && !v[s.row - 1][s.col]++
 		&& !add_new_path(queue, sa, s.row - 1, s.col))
 		return (NULL);
-	if (check_square(grid, sa, s.row, s.col + 1)
-			&& !add_new_path(queue, sa, s.row, s.col + 1))
+	if (check_square(grid, sa, s.row, s.col + 1) && !v[s.row][s.col + 1]++
+		&& !add_new_path(queue, sa, s.row, s.col + 1))
 		return (NULL);
-	if (check_square(grid, sa, s.row + 1, s.col)
-			&& !add_new_path(queue, sa, s.row + 1, s.col))
+	if (check_square(grid, sa, s.row + 1, s.col) && !v[s.row + 1][s.col]++
+		&& !add_new_path(queue, sa, s.row + 1, s.col))
 		return (NULL);
-	if (check_square(grid, sa, s.row, s.col - 1)
-			&& !add_new_path(queue, sa, s.row, s.col - 1))
+	if (check_square(grid, sa, s.row, s.col - 1) && !v[s.row][s.col - 1]++
+		&& !add_new_path(queue, sa, s.row, s.col - 1))
 		return (NULL);
 	return (cleanup(NULL, sa));
+}
+
+/*
+ * init_visited:
+ * Initializes a 2d array with the same size as the grid pointed by grid,
+ * setting all its values to 0.
+ * Returns the array if no error occurred, else returns a NULL pointer.
+ */
+int 	**init_visited(Grid *grid)
+{
+	int	**visited;
+	int	i;
+	int	j;
+
+	visited = malloc(sizeof(int *) * grid->rows);
+	if (!visited)
+		return (NULL);
+	i = 0;
+	while (i < grid->rows)
+	{
+		visited[i] = calloc(grid->cols, sizeof(int));
+		if (!visited[i])
+		{
+			j = 0;
+			while (j < i)
+				free(visited[j++]);
+			free(visited);
+		}
+		i++;
+	}
+	return (visited);
 }
 
 SquareArray	*resolve(Grid *grid)
 {
 	Queue		*queue;
 	SquareArray	*sa;
-	Square		square;
+	Square		s;
+	int		**visited;
 	
-	square = find_square(grid, START);
+	s = find_square(grid, START);
 	queue = init_queue();
 	if (!queue)
 		return (NULL);
 	sa = init_square_array(2);
 	if (!sa)
 		return (cleanup(queue, NULL));
-	square_array_push(sa, square.row, square.col);
-	if (!enqueue(queue, sa))
+	if (!square_array_push(sa, s.row, s.col) || !enqueue(queue, sa))
 		return (cleanup(queue, sa));
-	square = find_square(grid, END);
+	s = find_square(grid, END);
+	visited = init_visited(grid);
+	if (!visited)
+		return (cleanup(queue, sa));
 	while (queue->size)
 	{
-		sa = handle_next_path(grid, queue, square);
+		sa = handle_next_path(grid, queue, s, visited);
 		if (sa)
 			return (sa);
 	}

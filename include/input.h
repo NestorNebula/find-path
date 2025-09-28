@@ -12,4 +12,11 @@
  */
 char	*read_input(int fd);
 
+/*
+ * read_str:
+ * Reads a string from the fd stream until encountering last_char.
+ * Returns the string read if no error occurred, else returns a NULL pointer.
+ */
+char	*read_str(int fd, char last_char);
+
 #endif

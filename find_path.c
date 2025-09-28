@@ -107,14 +107,14 @@ int	main(int argc, char **argv)
 	print_grid(grid);
 	sa = resolve(grid);
 	if (!sa)
-		print_s("Grid couldn't be solved.\n", stderr);
+		print_s("\nGrid couldn't be solved.\n", stderr);
 	else
 	{
 		set_solution(grid, sa);
 		print_s("\nShortest path:\n", stdout);
 		print_grid(grid);
+		free_square_array(sa);
 	}
-	free_square_array(sa);
 	free_grid(grid);
 	return (0);
 }

@@ -8,17 +8,17 @@
  * Reads a character from fd and appends it to the string pointed by input.
  * Returns 1 if a character was read, 0 otherwise.
  */
-int	read_char(int fd, char **input, unsigned int len, size_t size)
+int	read_char(int fd, char **input, unsigned int len, size_t *size)
 {
 	char	*resized_input;
 
-	if (len == size)
+	if (len == *size)
 	{
-		resized_input = realloc(*input, sizeof(char) * (size * 2 + 2));
+		resized_input = realloc(*input, sizeof(char) * (*size * 2 + 2));
 		if (!resized_input)
 			return (0);
 		*input = resized_input;
-		size *= 2;
+		*size *= 2;
 	}
 	if (read(fd, *input + len, 1) > 0)
 		return (1);
@@ -42,7 +42,7 @@ char	*read_input(int fd)
 		free(input);
 		return (NULL);
 	}
-	while (read_char(fd, &input, len, size) && input[len] != ')')
+	while (read_char(fd, &input, len, &size) && input[len] != ')')
 		len++;
 	if (input[len] != ')')
 	{

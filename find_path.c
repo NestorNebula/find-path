@@ -1,14 +1,9 @@
 #include <grid.h>
 #include <resolve.h>
-#include <input.h>
-#include <output.h>
+#include <io.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
-
-#define stdin 0
-#define stdout 1
-#define stderr 2
 
 /*
  * handle_arguments:

@@ -53,3 +53,28 @@ char	*read_input(int fd)
 	input[len] = '\0';
 	return (input);
 }
+
+char	*read_str(int fd, char last_char)
+{
+	char		*str;
+	size_t		size;
+	unsigned int	len;
+
+	size = 2;
+	str = malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	len = 0;
+	while (read(fd, str + len, 1) > 0 && str[len] != last_char)
+	{
+		if (++len == size)
+		{
+			str = realloc(str, sizeof(char) * (size * 2 + 1));
+			if (!str)
+				return (NULL);
+			size *= 2;
+		}
+	}
+	str[len] = '\0';
+	return (str);
+}
